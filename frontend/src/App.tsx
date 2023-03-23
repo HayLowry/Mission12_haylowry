@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import teamsJson from './teams.json';
 
@@ -7,27 +6,34 @@ const teamsList = teamsJson["teams"]
 
 class Team extends React.Component {
   render() {
-    const oneTeam = this.props;
-    return(
-      <div>
-        <h2>{oneTeam}</h2>
-        <p>Mascot: {oneTeam.name}</p>
-        <p>Location: {oneTeam.city}, {oneTeam.state}</p>
-      </div>
-    );
+    const displayTeams = [];
+    for (let i = 0; i < teamsList.length; i++) {
+      displayTeams.push(<h2>{teamsList[i].school}</h2>)
+      displayTeams.push(<p>Mascott: {teamsList[i].name}</p>)
+      displayTeams.push(<p>Location: {teamsList[i].city}, {teamsList[i].state}</p>)
+      displayTeams.push(<br></br>)
+    }
+
+    return <div>{displayTeams}</div>;
   }
 }
 
 function TeamList() {
   return (
     <div>
-      <Team {...teamsList} />
+      <Team/>
     </div>
-  )
+  );
+  
 }
 
 function Header() {
-  return (<h1>NCAA Baskeball Teams</h1>);
+  return (
+    <div>
+      <h1>NCAA Baskeball Teams</h1>
+      <h4>Teams are listed below</h4>
+    </div>
+  );
 }
 
 function App() {
